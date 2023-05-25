@@ -1,0 +1,13 @@
+<po-page-default *ngIf="tudo" p-title="CONCURSO {{tudo.numero}} - {{tudo.dataApuracao}}">
+  <span *ngIf="tudo.acumulado">ACUMULOU</span>
+<div >
+  <span class="b" *ngFor="let numb of detail">
+    <div class="numbers">{{numb}}</div>
+  </span>
+</div>
+
+<div class="po-row" *ngIf="detail && detail.length > 0">
+<po-button p-label="Gerar" (p-click)="getNumberByContest()"> </po-button>
+</div>
+
+</po-page-default>

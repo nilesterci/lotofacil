@@ -104,5 +104,8 @@
       }
     }
   },
-  "defaultProject": "loto"
+  "defaultProject": "loto",
+  "cli": {
+    "analytics": "3b791390-86eb-432d-a068-592d26ae4839"
+  }
 }
