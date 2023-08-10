@@ -80,7 +80,27 @@ function convertDate(dateString) {
   return dateObject;
 }
 
+async function retornaResultados() {
+  try {
+    let pool = await sql.connect(config);
+    let result = await pool
+      .request()
+      .execute("RetornaSorteios");
+    return {
+      result: result.recordset.map(item => {
+        return {
+          numero: item.numero,
+          listaDezenas: item.listaDezenas
+        }
+      })
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export default {
   getCustomers,
   atualizaBanco,
+  retornaResultados
 };
