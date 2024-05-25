@@ -1,5 +1,5 @@
-var config = require("../dbconfig");
-var axios = require("axios");
+const config = require("../dbconfig");
+const axios = require("axios");
 const sql = require("mssql");
 import * as https from "https";
 
@@ -14,6 +14,23 @@ async function getCustomers() {
     return result.recordsets;
   } catch (error) {
     console.log(error);
+  }
+}
+
+//ATUALIZA NUMEROS NO BANCO
+async function atualizaBanco() {
+  try {
+    let pool = await sql.connect(config);
+    let result = await pool.request().execute("RetornaUltimoSorteio");
+    console.log("🚀 ~ atualizaBanco ~ result:", result)
+
+    var cad = await atualizaBanco1(
+      result.recordsets[0][0].ultimosorteioregistrado
+    );
+
+    return cad;
+  } catch (error) {
+    console.log(1111, error);
   }
 }
 
@@ -56,21 +73,7 @@ async function retornaSorteio(sorteio) {
     console.log(error);
   }
 }
-
-async function atualizaBanco() {
-  try {
-    let pool = await sql.connect(config);
-    let result = await pool.request().execute("RetornaUltimoSorteio");
-
-    var cad = await atualizaBanco1(
-      result.recordsets[0][0].ultimosorteioregistrado
-    );
-
-    return cad;
-  } catch (error) {
-    console.log(1111, error);
-  }
-}
+//ATUALIZA NUMEROS NO BANCO
 
 function convertDate(dateString) {
   var dateParts = dateString.split("/");

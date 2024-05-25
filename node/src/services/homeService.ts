@@ -16,7 +16,7 @@ async function atualizaBanco() {
 async function retornaResultados() {
   let resultados = await homeRepository.retornaResultados();
   let all;
-  resultados.result.forEach((e) => {
+  resultados?.result.forEach((e) => {
     all = all + "," + e.listaDezenas;
   });
 
@@ -26,7 +26,7 @@ async function retornaResultados() {
 
 function count(list) {
   let i = list.split(",");
-  let all = [];
+  let all: any[] = [];
   // all.push(i);
   i.shift();
   values.forEach(e => {

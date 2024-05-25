@@ -91,6 +91,7 @@ export class LotofacilComponent implements OnInit {
 
         if (find) {
           sum++;
+          console.log(sum);
         }
 
       });
